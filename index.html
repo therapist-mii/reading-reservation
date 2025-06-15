@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ご予約フォーム</title>
+  <link rel="icon" href="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-307x307_webp_d7ed3ad5-bfc0-4f50-afe1-508ed3022dbc.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="header-container">
+    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-1792x1024_v-fms_webp_8759d702-f151-420c-a737-205cc2e5e15e.jpg" class="header-bg" alt="背景イラスト" />
+    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-3007x750_v-frms_webp_dc24a363-04c8-4fdf-861b-9debe739dad7.png" class="header-logo" alt="ロゴ" />
+  </div>
+
+  <h1>ご予約フォーム</h1>
+
+  <div class="box">
+    <div><strong>リーディング基本料金</strong><br>鑑定書、A4の表が含まれます。</div>
+    <div class="flex-row">
+      <div><strong>10,000円</strong></div>
+      <div>数量: <strong>1</strong></div>
+    </div>
+  </div>
+
+  <div id="inputs">
+    <div class="input-group">
+      <label class="required">鑑定対象者のお名前</label>
+      <div class="note">鑑定結果に言及する必要のある方のお名前。<br>人間関係の質問の場合は全ての方のお名前をご記入ください</div>
+      <div class="note-price">お1人 3,000円</div>
+      <div id="nameList" class="name-list">
+        <div class="name-pair">
+          <input type="text" placeholder="姓" data-price="3000" data-label="鑑定対象者のお名前">
+          <input type="text" placeholder="名前" data-price="3000" data-label="鑑定対象者のお名前">
+          <span class="qty">数量: <strong>0</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="required">回答してほしい質問</label>
+      <div class="note">
+        ・1件2,000円（4件目から3,000円）<br>
+        ・詳細な相談内容はLINEでお知らせください。
+      </div>
+      <div id="questionList" class="question-list">
+        <div class="controls">
+          <textarea rows="2" data-label="回答してほしい質問" placeholder="質問内容の要点のみご記入ください"></textarea>
+          <span class="qty">数量: <strong>0</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">オプション</h2>
+  <div id="options">
+    <div class="input-group option-block">
+      <label>筆跡診断</label>
+      <div class="description">文字の癖から思考傾向や内面のブロックを診断します。</div>
+      <div class="controls option">
+        <span class="price">6,000円</span>
+        <button class="minus">−</button>
+        <input type="number" min="0" value="0" data-price="6000" data-label="筆跡診断">
+        <button class="plus">＋</button>
+        <span class="qty">数量: <strong>0</strong></span>
+      </div>
+    </div>
+
+    <div class="input-group option-block">
+      <label>お顔オーラカラーマップ</label>
+      <div class="description">お顔に現れるエネルギー傾向をカラーマップで可視化します。</div>
+      <div class="controls option">
+        <span class="price">4,000円</span>
+        <button class="minus">−</button>
+        <input type="number" min="0" value="0" data-price="4000" data-label="お顔オーラカラーマップ">
+        <button class="plus">＋</button>
+        <span class="qty">数量: <strong>0</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">お支払いについて</h2>
+  <div class="additional-sections">
+    <div class="input-group">
+      <label class="required">クーポンお持ちの方は入力してください。</label>
+      <div id="coupon-group" class="coupon-options">
+        <label><input type="radio" name="coupon" value="referral"> 紹介割引：−500円</label>
+        <label class="percent-coupon-label"><input type="radio" name="coupon" value="percent"> <input type="text" id="percent-off-value" placeholder="XX" maxlength="2">％OFFクーポン</label>
+        <label><input type="radio" name="coupon" value="none"> クーポンは持っていない</label>
+      </div>
+    </div>
+
+    <div class="input-group">
+        <label for="payment" class="required">お支払い方法</label>
+        <select id="payment" name="payment">
+            <option value="">選択してください</option>
+            <option value="bank">銀行振込</option>
+            <option value="paypay">PayPay</option>
+            <option value="paypal">PayPal</option>
+            <option value="credit">クレジットカード</option>
+            <option value="konbini">コンビニ払い(手数料220円)</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label for="remarks">備考</label>
+        <textarea id="remarks" name="remarks" rows="3" placeholder="ご希望・ご質問があればご記入ください"></textarea>
+    </div>
+    
+    <div class="input-group confirmation-group">
+        <p class="confirmation-title">ご確認事項</p>
+        
+        <div class="confirmation-item">
+            <p><strong>セッションについて</strong></p>
+            <p>セッション形式： 遠隔<br>ご予約： 日にち指定のみ（時間指定不可）</p>
+        </div>
+        
+        <div class="confirmation-item">
+            <p><strong>納品日・営業時間</strong></p>
+            <p>納品日：セッション日より5営業日<br>
+            営業時間： 9：00～17：00<br>
+            休日：土日祝日、他指定日</p>
+        </div>
+        
+        <div class="confirmation-item">
+            <p><strong>セッション後の追加料金について</strong></p>
+            <p>納品後に追加のご質問がある場合は、以下の追加料金が発生します。<br>
+            追加質問: 3,000円<br>
+            鑑定対象者追加: 3,000円</p>
+        </div>
+
+        <label class="agree-final"><input type="checkbox" name="agree_all"> 上記内容にすべて同意します</label>
+    </div>
+  </div>
+  <div class="estimate">
+    <p><strong>お見積り内容：</strong></p>
+    <ul id="selectedList">
+      <li>リーディング基本料金 10,000円</li>
+    </ul>
+    <p><strong>合計金額：<span id="totalAmount">10000</span>円</strong></p>
+  </div>
+
+  <div class="center-btn">
+    <button id="lineBtn">LINEで送信</button>
+  </div>
+  <div class="desc">※「LINEで送信」ボタンを押すとお見積り内容がコピーされますので、表示されたLINEに貼り付けて送信してください。</div>
+  
+  <div class="first-time-user-section">
+      <h2>はじめての方へ</h2>
+      <p>はじめての方は、以下のフォームにご記入お願いいたします。<br>リピーター様も未入力の方はご記入お願いいたします。</p>
+      <a href="https://spiritual-therapist-mii.studio.site/form" class="form-button" target="_blank">はじめての方のフォーム</a>
+  </div>
+
+  <div class="home-button">
+    <a href="https://spiritual-therapist-mii.studio.site/" target="_blank">
+      <img src="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-200x70_webp_849fa96d-3646-4e08-a994-9b6273e9d66a.png" alt="HOME">
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
