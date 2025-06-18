@@ -1,267 +1,206 @@
-/* General Body Styles */
-body {
-    font-family: 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
+<!DOCTYPE html>
+<html lang="ja">
 
-/* Header Container Styles */
-.header-container {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    height: 250px;
-    margin-bottom: 20px;
-}
-.header-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-.header-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 30%;
-    height: auto;
-    z-index: 2;
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>リーディングご予約フォーム</title>
+  <link rel="icon" href="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-307x307_webp_d7ed3ad5-bfc0-4f50-afe1-508ed3022dbc.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-h1, h2 {
-    text-align: center;
-    color: #333;
-}
-h1 {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    font-size: 2em;
-}
+<body>
 
-/* Form Container */
-form {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    width: 90%;
-    margin-bottom: 30px;
-    box-sizing: border-box;
-}
+  <div class="header-container">
+    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-1792x1024_v-fms_webp_8759d702-f151-420c-a737-205cc2e5e15e.jpg" class="header-bg" alt="背景イラスト" />
+    <img src="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-3007x750_v-frms_webp_dc24a363-04c8-4fdf-861b-9debe739dad7.png" class="header-logo" alt="ロゴ" />
+  </div>
 
-/* Input Group Styles */
-.input-group {
-    margin-bottom: 25px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #fefefe;
-}
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-    font-size: 1.1em;
-}
-.input-group .note {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-.input-group .note-price {
-    font-size: 0.9em;
-    color: #555;
-    font-weight: bold;
-    margin-bottom: 15px;
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 5px;
-}
+  <h1>リーディングご予約フォーム</h1>
 
-/* Input, Select, Textarea Styles */
-input[type="text"],
-input[type="number"],
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 1em;
-    background-color: #fcfcfc;
-    margin-bottom: 10px;
-}
-textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-input:focus, select:focus, textarea:focus {
-    border-color: #66afe9;
-    outline: none;
-    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
-}
+  <form id="reservationForm">
 
-/* Dynamic Lists and Items */
-.dynamic-list { margin-bottom: 15px; }
-.dynamic-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-.dynamic-item input { flex-grow: 1; margin-bottom: 0; }
+    <div id="inputs">
+      <div class="input-group">
+        <label class="required">お名前<span class="asterisk">*</span></label>
+        <div class="note-price">霊視接続料　13,000円</div>
+        <input type="text" placeholder="お名前" name="requester_name" id="requesterNameInput">
+      </div>
 
-/* Add & Remove Buttons */
-.add-item-btn {
-    background-color: #99ccff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin-top: 5px;
-}
-.add-item-btn:hover { background-color: #3366cc; }
-.remove-item {
-    background-color: #ccccff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-.remove-item:hover { background-color: #9999ff; }
+      <div class="input-group">
+        <label class="required">ご相談内容<span class="asterisk">*</span></label>
+        <div class="note">ご相談の要点をご記入ください。詳細はLINEにてお知らせいただけます。<br>（カテゴリ選択と内容記入の両方が必須です。最大5件まで）</div>
+        <div id="questionList" class="question-list dynamic-list">
+          <div class="question-block">
+            <div class="input-group-sub">
+              <label for="consultation-category-0" class="required">近いカテゴリをお選びください<span class="asterisk">*</span></label>
+              <select class="consultation-category" name="category_0" id="consultation-category-0">
+                <option value="">選択してください</option>
+                <option value="進路・転職" data-price="3000">進路・転職（3,000円）</option>
+                <option value="自己探求" data-price="3000">自己探求 － やるべきことなど（3,000円）</option>
+                <option value="仕事－働き方全般" data-price="3000">仕事 － 働き方全般（3,000円）</option>
+                <option value="仕事－経営・組織運営について" data-price="13000">仕事 － 経営・組織運営について（13,000円）</option>
+                <option value="家族－親子関係、夫婦関係、子育てについて" data-price="3000">家族 － 親子関係、夫婦関係、子育てについて（3,000円）</option>
+                <option value="人間関係－友人、知人、職場の方などの人間関係について" data-price="5000">人間関係 － 友人、知人、職場の方などの人間関係について（5,000円）</option>
+                <option value="恋愛－恋愛感情がある場合のご相談" data-price="8000">恋愛 － 恋愛感情がある場合のご相談（8,000円）</option>
+                <option value="健康－体に関するご相談" data-price="8000">健康 － 体に関するご相談（病名診断などはできません）（8,000円）</option>
+                <option value="上記に該当しない" data-price="3000">上記に該当しない（3,000円）</option>
+              </select>
+            </div>
+            <div class="controls">
+              <textarea rows="2" data-label="ご相談内容" placeholder="相談内容の要点のみご記入ください。" name="question_0"></textarea>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="addQuestionBtn" class="add-item-btn">＋ 相談内容を追加</button>
+      </div>
+    </div>
 
+    <div class="input-group">
+      <label class="required">関係者のお名前<span class="asterisk">*</span></label>
+      <div class="note">鑑定結果に言及する必要のある方のお名前。最大５名まで</div>
+      <div class="note-price">関係者の霊視接続料：3,000円/1名</div>
+      <div id="relatedNameList" class="dynamic-list">
+      </div>
+      <div style="margin-top:10px;">
+        <input type="checkbox" id="noRelatedCheckbox" name="no_related">
+        <label for="noRelatedCheckbox">関係者はいません</label>
+      </div>
+      <div id="relatedError" style="color: red; display: none; margin-top: 10px;">
+        関係者名を追加するか、「関係者はいません」にチェックを入れてください。
+      </div>
+      <div class="controls-footer">
+        <button type="button" id="addRelatedNameBtn" class="add-item-btn">＋ 関係者を追加</button>
+        <span class="qty-display">人数: <strong id="relatedNameCount">0</strong></span>
+      </div>
+    </div>
 
-.controls-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
-.qty-display { font-weight: bold; }
+    <h2 class="section-title">オプション</h2>
+    <div id="options">
+      <div class="input-group option-block">
+        <label>筆跡診断</label>
+        <div class="description">文字の癖から思考傾向や内面のブロックを診断します。</div>
+        <div class="controls option">
+          <span class="price">6,000円</span>
+          <button type="button" class="minus">−</button>
+          <input type="number" min="0" value="0" data-price="6000" data-label="筆跡診断" name="handwriting_qty">
+          <button type="button" class="plus">＋</button>
+          <span class="qty">数量: <strong>0</strong></span>
+        </div>
+      </div>
 
-/* Quantity Controls */
-.controls.option { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.controls.option .price { font-weight: bold; min-width: 80px; text-align: right; }
-.controls.option button {
-    background-color: #99ccff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-.controls.option button:hover:not(:disabled) { background-color: #3366cc; }
-.controls.option button:disabled { background-color: #cccccc; cursor: not-allowed; }
-.controls.option input[type="number"] { width: 50px; text-align: center; margin: 0; -moz-appearance: textfield; }
-.controls.option input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-.controls.option .qty { margin-left: 10px; font-weight: bold; }
+      <div class="input-group option-block">
+        <label>お顔オーラカラーマップ</label>
+        <div class="description">お顔に現れるエネルギー傾向をカラーマップで可視化します。</div>
+        <div class="controls option">
+          <span class="price">4,000円</span>
+          <button type="button" class="minus">−</button>
+          <input type="number" min="0" value="0" data-price="4000" data-label="お顔オーラカラーマップ" name="aura_map_qty">
+          <button type="button" class="plus">＋</button>
+          <span class="qty">数量: <strong>0</strong></span>
+        </div>
+      </div>
 
-/* Section Titles */
-.section-title {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 25px;
-    font-size: 1.6em;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-}
+      <div class="input-group option-block">
+        <label>ライト割引</label>
+        <div class="light-discount-description">
+          <ul>
+            <li>A4用紙1枚程度の量の鑑定書のみ</li>
+            <li>詳細な説明はありません。</li>
+            <li>納品後のLINEは、お気持ちだけいただき、基本的にこちらからのご返信は控えさせていただきます。
+</li>
+          </ul>
+        </div>
+        <label class="light-discount-agree">
+          <input type="checkbox" id="agree-light-discount"> 上記内容に同意し、ライト割引を適用します
+        </label>
+        <div class="controls option">
+          <span class="price">-3,000円</span>
+          <button type="button" class="minus" disabled>−</button>
+          <input type="number" min="0" max="1" value="0" data-price="-3000" data-label="ライト割引" disabled name="light_discount_qty">
+          <button type="button" class="plus" disabled>＋</button>
+          <span class="qty">数量: <strong>0</strong></span>
+        </div>
+      </div>
+    </div>
 
-/* Coupon & Confirmation */
-.coupon-options { padding: 10px; }
-.coupon-options label { display: block; margin-bottom: 10px; font-weight: normal; }
-.percent-coupon-label input[type="number"] { display: inline-block; width: 60px; margin-left: 5px; }
-.confirmation-group { background-color: #e9f7ef; border-color: #cce7d0; }
-.confirmation-title { font-size: 1.2em; font-weight: bold; color: #28a745; text-align: center; }
-.confirmation-item { margin-top: 15px; padding-top: 15px; border-top: 1px dotted #d0e0d0; }
-.agree-final { font-weight: bold; display: block; margin-top: 15px;}
+    <h2 class="section-title">お支払いについて</h2>
+    <div class="additional-sections">
+      <div class="input-group">
+        <label class="required">クーポンお持ちの方は入力してください。<span class="asterisk">*</span></label>
+        <div id="coupon-group" class="coupon-options">
+          <label><input type="radio" name="coupon_type" value="referral"> 紹介割引：−500円</label>
+          <label class="percent-coupon-label"><input type="radio" name="coupon_type" value="percent"> <input type="number" id="percent-off-value" value="0" max="99" min="0" name="percent_off_value" placeholder="0-99">％OFFクーポン</label>
+          <label><input type="radio" name="coupon_type" value="none"> クーポンは持っていない</label>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="payment_method" class="required">お支払い方法<span class="asterisk">*</span></label>
+        <select id="payment_method" name="payment_method">
+          <option value="">選択してください</option>
+          <option value="銀行振込">銀行振込</option>
+          <option value="PayPay">PayPay</option>
+          <option value="PayPal">PayPal</option>
+          <option value="クレジットカード">クレジットカード</option>
+          <option value="コンビニ払い">コンビニ払い(手数料220円)</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="remarks">備考</label>
+        <textarea id="remarks" name="remarks" rows="3" placeholder="ご希望・ご質問があればご記入ください"></textarea>
+      </div>
+    </div>
 
-/* Estimate Section */
-.estimate { background-color: #f7f7f7; border: 1px solid #e0e0e0; padding: 20px; margin-top: 30px; }
-.estimate-title { font-size: 1.3em; font-weight: bold; text-align: center; }
-.estimate-items { list-style: none; padding: 0; }
-.estimate-items li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dotted #eee; }
-.estimate-total { margin-top: 20px; border-top: 2px solid #ccc; padding-top: 15px; text-align: right; font-size: 1.4em; font-weight: bold; }
-.estimate-total #totalAmount { color: #dc3545; font-size: 1.2em; }
+    <div class="input-group confirmation-group">
+      <p class="confirmation-title">ご確認事項</p>
+      <div class="confirmation-item">
+        <p><strong>セッションについて</strong></p>
+        <p>セッション形式： 遠隔<br>ご予約： 日にち指定のみ（時間指定不可）</p>
+      </div>
+      <div class="confirmation-item">
+        <p><strong>納品日・営業時間</strong></p>
+        <p>納品日：セッション日より5営業日<br>営業時間： 9：00～17：00<br>休日：土日祝日、他指定日</p>
+      </div>
+      <div class="confirmation-item">
+        <p><strong>セッション後の追加料金について</strong></p>
+        <p>納品後に追加のご質問がある場合は、以下の追加料金が発生する場合がございます。<br>追加質問: 3,000円～<br>鑑定対象者追加: 3,000円<br>霊視接続料: 10,000円</p>
+      </div>
+      <label class="agree-final"><input type="checkbox" name="agree_all"> 上記内容にすべて同意します<span class="asterisk">*</span></label>
+    </div>
 
-/* Buttons */
-.center-btn { text-align: center; margin-top: 30px; display: flex; gap: 15px; justify-content: center; }
-.center-btn button, .center-btn a {
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    text-decoration: none;
-}
-.center-btn button#copyBtn { background-color: #99ccff; }
-.center-btn button#copyBtn:hover { background-color: #3366cc; }
-.center-btn button#clearBtn { background-color: #ccccff; }
-.center-btn button#clearBtn:hover { background-color: #9999ff; }
-.center-btn button:disabled { background-color: #cccccc; cursor: not-allowed; }
+    <div class="estimate">
+      <p class="estimate-title">お見積り内容</p>
+      <div id="selectedList" class="estimate-items"></div>
+      <div class="estimate-total">
+        <p>合計金額：<span id="totalAmount">0</span>円</p>
+        <input type="hidden" name="total_amount" id="totalAmountHidden">
+      </div>
+    </div>
 
-/* First-time User & Home Button */
-.first-time-user-section { background-color: #e6f7ff; padding: 30px; border-radius: 10px; max-width: 700px; width: 90%; margin-top: 30px; text-align: center; box-sizing: border-box; }
-.home-button { text-align: center; margin: 40px auto; }
+    <div id="validation-message" style="color: red; font-weight: bold; margin-top: 15px; text-align: center; display: none;"></div>
 
-.form-button { background-color: #66ccff; color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none; display: inline-block; }
-.form-button:hover { background-color: #0066cc; }
+    <div class="center-btn">
+      <button type="button" id="clearBtn">クリア</button>
+      <button type="button" id="copyBtn">コピー</button>
+    </div>
+    <div class="center-btn line-btn-wrapper">
+      <a href="#" id="lineSubmitBtn" class="line-button">LINEで申込内容を送信する</a>
+    </div>
+  </form>
 
-/* ★★★ はじめての方のフォームボタンの色を上書き ★★★ */
-#firstTimeUserBtn {
-    background-color: #0099cc !important;
-}
-/* ★★★ LINE送信用ボタンのラッパー ★★★ */
-.line-btn-wrapper {
-    margin-top: 15px; /* 上のボタンとの間隔 */
-}
-/* ★★★ LINE送信用ボタンの色 ★★★ */
-.line-button {
-    background-color: #00c300;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    text-decoration: none;
-    display: inline-block;
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
-}
-.line-button:hover { background-color: #009900; }
+  <div class="first-time-user-section">
+    <h2>はじめての方へ</h2>
+    <p>はじめての方は、以下のフォームにご記入お願いいたします。<br>リピーター様も未入力の方はご記入お願いいたします。</p>
+    <a href="https://spiritual-therapist-mii.studio.site/form" class="form-button" id="firstTimeUserBtn" target="_blank">はじめての方のフォーム</a>
+  </div>
 
+  <div class="home-button">
+    <a href="https://spiritual-therapist-mii.studio.site/" target="_blank">
+      <img src="https://storage.googleapis.com/studio-design-asset-files/projects/4Ra4x0NkaD/s-200x70_webp_849fa96d-3646-4e08-a994-9b6273e9d66a.png" alt="HOME">
+    </a>
+  </div>
 
-/* Validation & Error Styles */
-.asterisk { color: red; margin-left: 5px; }
-.error-highlight { border: 2px solid #ff9999 !important; background-color: #fffafa !important; }
+  <script src="script.js"></script>
+</body>
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    h1 { font-size: 1.8em; }
-    form, .first-time-user-section { padding: 20px; width: 95%; }
-    .header-container { height: 180px; }
-    .center-btn { flex-direction: column; align-items: center; }
-    .center-btn button, .center-btn a { width: 100%; max-width: 400px; }
-    .question-block .controls { flex-direction: column; align-items: stretch; }
-    .question-block .remove-item { align-self: flex-end; margin-top: 5px; }
-}
+</html>
